@@ -3,6 +3,8 @@
 #include "header.h"
 #include <string>
 
+using namespace std;
+
 TEST(VisitorTest, VisitCircle) {
     Circle circle(1.0);
     Draw visitor;
