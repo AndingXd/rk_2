@@ -1,0 +1,29 @@
+name: Build
+on:
+  push:
+jobs:
+  build-project:
+    name: Build Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.2
+
+      - name: Configure and Build example
+        run: |
+          cd main
+          cmake -B build
+          cmake --build build
+          build/main
+      
+      - name: Test
+        run: |
+          cmake -B build
+          cmake --build build
+          build/test_app
+          
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: executable
+          path: build
